@@ -1,1 +1,7 @@
 c:\users\roxas\documents\visual studio 2015\Projects\TreeExercise\TreeExercise\bin\Debug\TreeExercise.exe.config
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\bin\Debug\TreeExercise.exe.config
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\bin\Debug\TreeExercise.exe
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\bin\Debug\TreeExercise.pdb
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\obj\Debug\TreeExercise.csprojResolveAssemblyReference.cache
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\obj\Debug\TreeExercise.exe
+C:\Users\Roxas\Documents\NeuroScouting-Tree-Exercise\TreeExercise\TreeExercise\obj\Debug\TreeExercise.pdb
