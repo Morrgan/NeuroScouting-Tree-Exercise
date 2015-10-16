@@ -13,6 +13,12 @@ namespace TreeExercise
         {
             Node root = new Node();
             Console.WriteLine("Root Node: " + root.Data);
+            root.MakeChildren();
+            Console.WriteLine(root.LChild.Data + "  " + root.RChild.Data);
+            root.LChild.MakeChildren();
+            root.RChild.MakeChildren();
+            Console.WriteLine(root.LChild.LChild.Data + " " + root.LChild.RChild.Data
+                + "  " + root.RChild.LChild.Data + "  " + root.RChild.RChild.Data);
         }
     }
 }

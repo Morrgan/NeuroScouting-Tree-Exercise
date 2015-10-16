@@ -23,6 +23,7 @@ namespace TreeExercise
         public int Data
         {
             get { return data; }
+            set { data = value; }
         }
         public Node Parent
         {
@@ -48,6 +49,38 @@ namespace TreeExercise
         {
             get { return rNeighbor; }
             set { rNeighbor = value; }
+        }
+
+        public void MakeChildren()
+        {
+            // set the left Child
+            lChild = new Node(this);
+            // if this is the root Node or this Node has no left Neighbor,
+            if(this.Parent == null || this.LNeighbor == null)
+            {
+                // set the left Child's data to this Node's data
+                lChild.Data = this.Data;
+            }
+            else
+            {
+                // otherwise set the left Child's data to
+                // this Node's + the left Neighbor's data
+                lChild.Data = this.Data + this.LNeighbor.Data;
+            }
+            // set the right Child
+            rChild = new Node(this);
+            // if this is the root Node or this Node has no right Neighbor,
+            if (this.Parent == null || this.RNeighbor == null)
+            {
+                // set the right Child's data to this Node's data
+                rChild.Data = this.Data;
+            }
+            else
+            {
+                // otherwise set the right Child's data to
+                // this Node's + the right Neighbor's data
+                rChild.Data = this.Data + this.RNeighbor.Data;
+            }
         }
 
         // default constructor
