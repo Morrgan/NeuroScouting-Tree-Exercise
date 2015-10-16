@@ -55,8 +55,11 @@ namespace TreeExercise
         {
             // set the left Child
             lChild = new Node(this);
+            // set the right Child
+            rChild = new Node(this);
+            lChild.RNeighbor = rChild;
             // if this is the root Node or this Node has no left Neighbor,
-            if(this.Parent == null || this.LNeighbor == null)
+            if (this.Parent == null || this.LNeighbor == null)
             {
                 // set the left Child's data to this Node's data
                 lChild.Data = this.Data;
@@ -67,8 +70,6 @@ namespace TreeExercise
                 // this Node's + the left Neighbor's data
                 lChild.Data = this.Data + this.LNeighbor.Data;
             }
-            // set the right Child
-            rChild = new Node(this);
             // if this is the root Node or this Node has no right Neighbor,
             if (this.Parent == null || this.RNeighbor == null)
             {
@@ -102,6 +103,7 @@ namespace TreeExercise
                 // make the left Neighbor's right Child this
                 // Node's left Neighbor
                 this.LNeighbor = par.LNeighbor.RChild;
+                par.LNeighbor.RChild.RNeighbor = this;
             }
             // otherwise, if the parent Node has a left Child
             else if(par.LChild != null)
@@ -117,6 +119,10 @@ namespace TreeExercise
                 // make the right Neighbor's left Child this
                 // Node's right Neighbor
                 this.RNeighbor = par.RNeighbor.LChild;
+                if (par.RNeighbor.LChild != null)
+                {
+                    par.RNeighbor.LChild.LNeighbor = this;
+                }
             }
             // otherwise, if the parent Node has a right Child
             else if (par.RChild != null)
