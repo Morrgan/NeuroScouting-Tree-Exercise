@@ -11,46 +11,6 @@ namespace TreeExercise
         // main method, code is run through here
         static void Main(string[] args)
         {
-            /*
-            Note: the following is test code;
-            it is not reflective of the final product in any way
-            these are a series of hard coded tests to ensure 
-            the Node class works properly before making a user interface
-            
-            Node root = new Node();
-            Console.WriteLine("Root Node: " + root.Data);
-            root.MakeChildren();
-            Console.WriteLine("          " + root.LChild.Data + " " + root.RChild.Data);
-            root.LChild.MakeChildren();
-            root.RChild.MakeChildren();
-            Console.WriteLine("        " + root.LChild.LChild.Data + " " + root.LChild.RChild.Data
-                + " " + root.RChild.LChild.Data + " " + root.RChild.RChild.Data);
-            root.LChild.LChild.MakeChildren();
-            root.LChild.RChild.MakeChildren();
-            root.RChild.LChild.MakeChildren();
-            root.RChild.RChild.MakeChildren();
-            Console.WriteLine();
-            Console.WriteLine("    " + root.LChild.LChild.LChild.Data + " " + root.LChild.LChild.RChild.Data
-                + " " + root.LChild.RChild.LChild.Data + " " + root.LChild.RChild.RChild.Data + " "
-                + root.RChild.LChild.LChild.Data + " " + root.RChild.LChild.RChild.Data
-                + " " + root.RChild.RChild.LChild.Data + " " + root.RChild.RChild.RChild.Data);
-            root.LChild.LChild.LChild.MakeChildren();
-            root.LChild.LChild.RChild.MakeChildren();
-            root.LChild.RChild.LChild.MakeChildren();
-            root.LChild.RChild.RChild.MakeChildren();
-            root.RChild.LChild.LChild.MakeChildren();
-            root.RChild.LChild.RChild.MakeChildren();
-            root.RChild.RChild.LChild.MakeChildren();
-            root.RChild.RChild.RChild.MakeChildren();
-            Console.WriteLine("    " + root.LChild.LChild.LChild.LChild.Data + " " + root.LChild.LChild.LChild.RChild.Data
-                + " " + root.LChild.LChild.RChild.LChild.Data + " " + root.LChild.LChild.RChild.RChild.Data + " "
-                + root.LChild.RChild.LChild.LChild.Data + " " + root.LChild.RChild.LChild.RChild.Data
-                + " " + root.LChild.RChild.RChild.LChild.Data + " " + root.LChild.RChild.RChild.RChild.Data + " "
-                + root.RChild.LChild.LChild.LChild.Data + " " + root.RChild.LChild.LChild.RChild.Data + " "
-                + root.RChild.LChild.RChild.LChild.Data + " " + root.RChild.LChild.RChild.RChild.Data + " "
-                + root.RChild.RChild.LChild.LChild.Data + " " + root.RChild.RChild.LChild.RChild.Data + " "
-                + root.RChild.RChild.RChild.LChild.Data + " " + root.RChild.RChild.RChild.RChild.Data);
-            */
             string userInput = "";
             int treeDepth = 0;
             // begin user input sequence
@@ -82,22 +42,87 @@ namespace TreeExercise
             {
                 // make the root the current Node
                 current = root;
+                // and loop for as many times as the user entered - 1
                 for(int i = 1; i < treeDepth; i++)
                 {
+                    // make children of the current Node
                     current.MakeChildren();
-                    Console.Write(current.LChild.Data + " " + current.RChild.Data);
+                    // make sure that the children are aware of each other
+                    current.LChild.RNeighbor = current.RChild;
+                    current.RChild.LNeighbor = current.LChild;
+                    // while the current Node has another Node to its right,
                     while (current.RNeighbor != null)
                     {
+                        // make that Node the current Node
                         current = current.RNeighbor;
+                        // make children for that Node
                         current.MakeChildren();
-                        Console.Write(" " + current.LChild.Data + " " + current.RChild.Data);
+                        // and make the children aware of each other
+                        current.LChild.RNeighbor = current.RChild;
+                        current.RChild.LNeighbor = current.LChild;
                     }
+                    // while the current Node has another Node to its Left,
                     while(current.LNeighbor != null)
                     {
+                        // set the current Node to the left
+                        current = current.LNeighbor;
+                        // this is sort of equivalent to starting over from the left
+                    }
+                    // if there is a Node to the current Node's right
+                    if(current.RNeighbor != null)
+                    {
+                        // tell the right child of this Node that the left child of the other node is its neighbor
+                        current.RChild.RNeighbor = current.RNeighbor.LChild;
+                        // and set the child's data
+                        current.RChild.Data = current.Data + current.RNeighbor.Data;
+                    }
+                    // while there is a Node to the current Node's right
+                    while (current.RNeighbor != null)
+                    {
+                        // set that Node to be the current Node
+                        current = current.RNeighbor;
+                        // if it also has a Node to its right
+                        if (current.RNeighbor != null)
+                        {
+                            // tell the right child of this Node that the left child of the other node is its neighbor
+                            current.RChild.RNeighbor = current.RNeighbor.LChild;
+                            // and set the child's data
+                            current.RChild.Data = current.Data + current.RNeighbor.Data;
+                        }
+                        // if it has a Node to its left
+                        if (current.LNeighbor != null)
+                        {
+                            // tell the left child of this Node that the right child of the other node is its neighbor
+                            current.LChild.LNeighbor = current.LNeighbor.RChild;
+                            // and set the child's data
+                            current.LChild.Data = current.Data + current.LNeighbor.Data;
+                        }
+                    }
+                    // while the current Node has another Node to its Left,
+                    while (current.LNeighbor != null)
+                    {
+                        // set the current Node to the left
                         current = current.LNeighbor;
                     }
+                    // print out the current Node's data
+                    Console.Write(current.LChild.Data + " " + current.RChild.Data + " ");
+                    // and while there is a Node to the right of this Node,
+                    while (current.RNeighbor != null)
+                    {
+                        // change to that Node and print out its data as well
+                        current = current.RNeighbor;
+                        Console.Write(current.LChild.Data + " " + current.RChild.Data + " ");
+                    }
+                    // while the current Node has another Node to its Left,
+                    while (current.LNeighbor != null)
+                    {
+                        // set the current Node to the left
+                        current = current.LNeighbor;
+                    }
+                    // last but not least, set the current Node to be the left child of the
+                    // current Node, which should be the farthest left Node in the whole tree
                     current = current.LChild;
-                    Console.WriteLine();
+                    Console.WriteLine(); // line break
                 }
             }
         }

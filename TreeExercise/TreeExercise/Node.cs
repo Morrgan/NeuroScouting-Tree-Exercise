@@ -57,31 +57,6 @@ namespace TreeExercise
             lChild = new Node(this);
             // set the right Child
             rChild = new Node(this);
-            lChild.RNeighbor = rChild;
-            // if this is the root Node or this Node has no left Neighbor,
-            if (this.Parent == null || this.LNeighbor == null)
-            {
-                // set the left Child's data to this Node's data
-                lChild.Data = this.Data;
-            }
-            else
-            {
-                // otherwise set the left Child's data to
-                // this Node's + the left Neighbor's data
-                lChild.Data = this.Data + this.LNeighbor.Data;
-            }
-            // if this is the root Node or this Node has no right Neighbor,
-            if (this.Parent == null || this.RNeighbor == null)
-            {
-                // set the right Child's data to this Node's data
-                rChild.Data = this.Data;
-            }
-            else
-            {
-                // otherwise set the right Child's data to
-                // this Node's + the right Neighbor's data
-                rChild.Data = this.Data + this.RNeighbor.Data;
-            }
         }
 
         // default constructor
@@ -96,46 +71,8 @@ namespace TreeExercise
         {
             // set the parent Node to the given value
             this.Parent = par;
-            
-            // if the parent Node has a left Neighbor,
-            if(par.LNeighbor != null)
-            {
-                // make the left Neighbor's right Child this
-                // Node's left Neighbor
-                this.LNeighbor = par.LNeighbor.RChild;
-                if (par.LNeighbor.RChild != null)
-                {
-                    par.LNeighbor.RChild.RNeighbor = this;
-                    par.LNeighbor.RChild.Data = this.Parent.Data + par.LNeighbor.Data;
-                }
-            }
-            // otherwise, if the parent Node has a left Child
-            if(par.LChild != null)
-            {
-                // make that child this Node's left Neighbor
-                this.LNeighbor = par.LChild;
-            }
-            // otherwise, leave the left Neighbor null; this is an
-            // edge Node
-            // if the parent Node has a right Neighbor,
-            if (par.RNeighbor != null)
-            {
-                // make the right Neighbor's left Child this
-                // Node's right Neighbor
-                this.RNeighbor = par.RNeighbor.LChild;
-                if (par.RNeighbor.LChild != null)
-                {
-                    par.RNeighbor.LChild.LNeighbor = this;
-                }
-            }
-            // otherwise, if the parent Node has a right Child
-            if (par.RChild != null)
-            {
-                // make that child this Node's right Neighbor
-                this.RNeighbor = par.RChild;
-            }
-            // otherwise, leave the right Neighbor null; this is an
-            // edge Node
+            data = 1;
         }
+        
     }
 }
