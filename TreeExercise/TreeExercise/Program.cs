@@ -125,6 +125,8 @@ namespace TreeExercise
                     Console.WriteLine(); // line break
                 }
             }
+            Console.WriteLine("Tree complete. Press enter to close program.");
+            string closed = Console.ReadLine();
         }
     }
 }
