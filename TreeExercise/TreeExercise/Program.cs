@@ -34,6 +34,22 @@ namespace TreeExercise
                 + " " + root.LChild.RChild.LChild.Data + " " + root.LChild.RChild.RChild.Data + " "
                 + root.RChild.LChild.LChild.Data + " " + root.RChild.LChild.RChild.Data
                 + " " + root.RChild.RChild.LChild.Data + " " + root.RChild.RChild.RChild.Data);
+            root.LChild.LChild.LChild.MakeChildren();
+            root.LChild.LChild.RChild.MakeChildren();
+            root.LChild.RChild.LChild.MakeChildren();
+            root.LChild.RChild.RChild.MakeChildren();
+            root.RChild.LChild.LChild.MakeChildren();
+            root.RChild.LChild.RChild.MakeChildren();
+            root.RChild.RChild.LChild.MakeChildren();
+            root.RChild.RChild.RChild.MakeChildren();
+            Console.WriteLine("    " + root.LChild.LChild.LChild.LChild.Data + " " + root.LChild.LChild.LChild.RChild.Data
+                + " " + root.LChild.LChild.RChild.LChild.Data + " " + root.LChild.LChild.RChild.RChild.Data + " "
+                + root.LChild.RChild.LChild.LChild.Data + " " + root.LChild.RChild.LChild.RChild.Data
+                + " " + root.LChild.RChild.RChild.LChild.Data + " " + root.LChild.RChild.RChild.RChild.Data + " "
+                + root.RChild.LChild.LChild.LChild.Data + " " + root.RChild.LChild.LChild.RChild.Data + " "
+                + root.RChild.LChild.RChild.LChild.Data + " " + root.RChild.LChild.RChild.RChild.Data + " "
+                + root.RChild.RChild.LChild.LChild.Data + " " + root.RChild.RChild.LChild.RChild.Data + " "
+                + root.RChild.RChild.RChild.LChild.Data + " " + root.RChild.RChild.RChild.RChild.Data);
         }
     }
 }
