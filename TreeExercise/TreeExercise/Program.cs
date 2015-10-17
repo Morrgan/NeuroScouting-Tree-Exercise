@@ -16,7 +16,7 @@ namespace TreeExercise
             it is not reflective of the final product in any way
             these are a series of hard coded tests to ensure 
             the Node class works properly before making a user interface
-            */
+            
             Node root = new Node();
             Console.WriteLine("Root Node: " + root.Data);
             root.MakeChildren();
@@ -50,6 +50,56 @@ namespace TreeExercise
                 + root.RChild.LChild.RChild.LChild.Data + " " + root.RChild.LChild.RChild.RChild.Data + " "
                 + root.RChild.RChild.LChild.LChild.Data + " " + root.RChild.RChild.LChild.RChild.Data + " "
                 + root.RChild.RChild.RChild.LChild.Data + " " + root.RChild.RChild.RChild.RChild.Data);
+            */
+            string userInput = "";
+            int treeDepth = 0;
+            // begin user input sequence
+            Console.WriteLine("Please enter an integer value greater than 0 for the depth of the tree:");
+            userInput = Console.ReadLine();
+            bool parsed = false;
+            // loop until user enters a value that is an integer
+            while(parsed == false)
+            {
+                // check to make sure the value is an integer
+                parsed = int.TryParse(userInput, out treeDepth);
+                if(parsed == true && treeDepth != 0)
+                {
+                    Console.WriteLine("Value accepted. Creating tree...");
+                }
+                // if not, get the input again until it is
+                else
+                {
+                    Console.WriteLine(userInput + " is not a valid value. Please enter an integer greater than 0.");
+                    userInput = Console.ReadLine();
+                }
+            }
+            // create the base Node of the tree
+            Node root = new Node();
+            Console.WriteLine(root.Data); // print the root's data
+            Node current = null; // control Node for keeping track of position in the tree
+            // if depth of tree is greater than 1
+            if(treeDepth > 1)
+            {
+                // make the root the current Node
+                current = root;
+                for(int i = 1; i < treeDepth; i++)
+                {
+                    current.MakeChildren();
+                    Console.Write(current.LChild.Data + " " + current.RChild.Data);
+                    while (current.RNeighbor != null)
+                    {
+                        current = current.RNeighbor;
+                        current.MakeChildren();
+                        Console.Write(" " + current.LChild.Data + " " + current.RChild.Data);
+                    }
+                    while(current.LNeighbor != null)
+                    {
+                        current = current.LNeighbor;
+                    }
+                    current = current.LChild;
+                    Console.WriteLine();
+                }
+            }
         }
     }
 }

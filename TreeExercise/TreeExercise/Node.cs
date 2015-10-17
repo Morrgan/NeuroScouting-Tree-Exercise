@@ -103,8 +103,11 @@ namespace TreeExercise
                 // make the left Neighbor's right Child this
                 // Node's left Neighbor
                 this.LNeighbor = par.LNeighbor.RChild;
-                par.LNeighbor.RChild.RNeighbor = this;
-                par.LNeighbor.RChild.Data = this.Parent.Data + par.LNeighbor.Data;
+                if (par.LNeighbor.RChild != null)
+                {
+                    par.LNeighbor.RChild.RNeighbor = this;
+                    par.LNeighbor.RChild.Data = this.Parent.Data + par.LNeighbor.Data;
+                }
             }
             // otherwise, if the parent Node has a left Child
             if(par.LChild != null)
